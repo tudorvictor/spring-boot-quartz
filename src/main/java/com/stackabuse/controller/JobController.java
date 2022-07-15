@@ -1,19 +1,14 @@
 package com.stackabuse.controller;
 
-import java.util.List;
-
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerMetaData;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.stackabuse.entity.Message;
 import com.stackabuse.entity.SchedulerJobInfo;
 import com.stackabuse.service.SchedulerJobService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.SchedulerException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,14 +34,12 @@ public class JobController {
 
 	@RequestMapping("/metaData")
 	public Object metaData() throws SchedulerException {
-		SchedulerMetaData metaData = scheduleJobService.getMetaData();
-		return metaData;
+		return scheduleJobService.getMetaData();
 	}
 
 	@RequestMapping("/getAllJobs")
 	public Object getAllJobs() throws SchedulerException {
-		List<SchedulerJobInfo> jobList = scheduleJobService.getAllJobList();
-		return jobList;
+		return scheduleJobService.getAllJobList();
 	}
 
 	@RequestMapping(value = "/runJob", method = { RequestMethod.GET, RequestMethod.POST })
